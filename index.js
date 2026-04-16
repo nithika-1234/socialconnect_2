@@ -21,6 +21,9 @@ app.use(cors({
 app.use("/uploads", express.static("uploads"));
 app.use("/auth",router);
 app.use("/post",PostRouter);
+app.get("/test",(req,res)=>{
+    res.send("Hello its me")
+});
 const PORT = process.env.PORT || 5000;
 connectDb()
   .then(() => {
