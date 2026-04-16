@@ -15,14 +15,19 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin:['http://localhost:5173','http://localhost:5174'],//which frontend have to access the backend
+    origin:true,//which frontend have to access the backend
     credentials:true
 }));
 app.use("/uploads", express.static("uploads"));
 app.use("/auth",router);
 app.use("/post",PostRouter);
-const PORT = process.env.PORT;
-app.listen(PORT,()=>{
-    connectDb();
-    console.log(`Server is running in http://localhost:${process.env.PORT}`)
-})
+const PORT = process.env.PORT || 5000;
+connectDb()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("DB connection failed:", err);
+  });
