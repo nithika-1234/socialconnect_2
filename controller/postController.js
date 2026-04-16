@@ -1,4 +1,4 @@
-import Post from "../models/Post.js";
+import Post from "../models/post.js";
 import Comment from "../models/Comments.js";
 import cloudinary from "../services/cloudinary.js";
 import fs from "fs";
@@ -131,7 +131,7 @@ export const getUserPosts = async (req, res) => {
             success: false,
             message: "Error in Fetching User Posts"
         });
-        
+
     }
 };
 
